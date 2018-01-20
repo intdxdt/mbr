@@ -1,42 +1,49 @@
 package mbr
 
-func (self *MBR) AsArray() []float64 {
-	return []float64{self[x1], self[y1], self[x2], self[y2]}
+//Bounding box as Array
+func (mbr *MBR) AsArray() []float64 {
+	return []float64{mbr[x1], mbr[y1], mbr[x2], mbr[y2]}
 }
-func (self *MBR) AsPolyArray() [][]float64 {
-	lx, ly := self[x1], self[y1]
-	ux, uy := self[x2], self[y2]
+
+//As polygon array
+func (mbr *MBR) AsPolyArray() [][]float64 {
+	lx, ly := mbr[x1], mbr[y1]
+	ux, uy := mbr[x2], mbr[y2]
 	return [][]float64{{lx, ly}, {lx, uy}, {ux, uy}, {ux, ly}, {lx, ly}}
 }
 
-func (self *MBR) Width() float64 {
-	return self[x2] - self[x1]
+//Width of bounding box
+func (mbr *MBR) Width() float64 {
+	return mbr[x2] - mbr[x1]
 }
 
-func (self *MBR) Height() float64 {
-	return self[y2] - self[y1]
+//Height of bounding box
+func (mbr *MBR) Height() float64 {
+	return mbr[y2] - mbr[y1]
 }
 
 //Area  of polygon
-func (self *MBR) Area() float64 {
-	return self.Height() * self.Width()
+func (mbr *MBR) Area() float64 {
+	return mbr.Height() * mbr.Width()
 }
 
-func (self *MBR) IsPoint() bool {
-	return self.Height() == 0.0 && self.Width() == 0.0;
+//Is bounding dimensionless like a point: width & height is 0
+func (mbr *MBR) IsPoint() bool {
+	return mbr.Height() == 0.0 && mbr.Width() == 0.0
 }
 
 //Translate mbr  by change in x and y
-func (self *MBR) Translate(dx, dy float64) *MBR {
+func (mbr *MBR) Translate(dx, dy float64) *MBR {
 	return NewMBR(
-		self[x1]+dx, self[y1]+dy,
-		self[x2]+dx, self[y2]+dy,
+		mbr[x1]+dx, mbr[y1]+dy,
+		mbr[x2]+dx, mbr[y2]+dy,
 	)
 }
 
-func (self *MBR) Center() []float64 {
+//Center of bounding box
+func (mbr *MBR) Center() []float64 {
 	return []float64{
-		(self[x1] + self[x2]) / 2.0,
-		(self[y1] + self[y2]) / 2.0,
+		(mbr[x1] + mbr[x2]) / 2.0,
+		(mbr[y1] + mbr[y2]) / 2.0,
 	}
 }
