@@ -3,18 +3,19 @@ package mbr
 import (
 	 "github.com/intdxdt/math"
 )
-
+var  nan = math.NaN()
 //Checks equallity of two bounding box
 func (mbr *MBR) Equals(other *MBR) bool {
-	return math.FloatEqual(mbr[x1], other[x1]) &&
+	return (
+		math.FloatEqual(mbr[x1], other[x1]) &&
 		math.FloatEqual(mbr[y1], other[y1]) &&
 		math.FloatEqual(mbr[x2], other[x2]) &&
-		math.FloatEqual(mbr[y2], other[y2])
+		math.FloatEqual(mbr[y2], other[y2]))
 }
 
 //Insersection of two bounding box
 func (mbr *MBR) Intersection(other *MBR) (*MBR, bool) {
-	nan := math.NaN()
+
 
 	minx, miny := nan, nan
 	maxx, maxy := nan, nan

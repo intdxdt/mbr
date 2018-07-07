@@ -28,8 +28,8 @@ func (mbr *MBR) ExpandIncludeMBR(other *MBR) *MBR {
 //ExpandBy expands mbr by change in x and y
 func (mbr *MBR) ExpandByDelta(dx, dy float64) *MBR {
 
-	minx, miny := mbr[x1]-dx, mbr[y1]-dy
-	maxx, maxy := mbr[x2]+dx, mbr[y2]+dy
+	var minx, miny = mbr[x1]-dx, mbr[y1]-dy
+	var maxx, maxy = mbr[x2]+dx, mbr[y2]+dy
 
 	minx, maxx = math.MinF64(minx, maxx), math.MaxF64(minx, maxx)
 	miny, maxy = math.MinF64(miny, maxy), math.MaxF64(miny, maxy)

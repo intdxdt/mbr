@@ -7,9 +7,9 @@ import (
 )
 
 func TestMBR(t *testing.T) {
-	g := goblin.Goblin(t)
+	var g = goblin.Goblin(t)
 
-	m00 := NewMBR(0, 0, 0, 0)
+	var m00 = NewMBR(0, 0, 0, 0)
 	m00.ExpandIncludeXY(2, 2)
 
 	n00 := NewMBR(0, 0, 0, 0)
@@ -33,11 +33,11 @@ func TestMBR(t *testing.T) {
 	g.Describe("minimum bounding box", func() {
 
 		m0123 := NewMBR(0, 2, 1, 3)
-		clone_m0123 := m0123.Clone()
+		cloneM0123 := m0123.Clone()
 
 		g.It("equals ", func() {
 			g.Assert(m1.AsArray()).Equal([]float64{0, 0, 2, 2})
-			g.Assert(clone_m0123.Equals(m0123)).IsTrue()
+			g.Assert(cloneM0123.Equals(m0123)).IsTrue()
 			g.Assert(m0.Equals(m1)).IsTrue()
 			g.Assert(m0.BBox() == m0).IsTrue()
 			g.Assert(m00.Equals(m1)).IsTrue()

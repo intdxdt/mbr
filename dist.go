@@ -2,7 +2,7 @@ package mbr
 
 import "github.com/intdxdt/math"
 
-func distance_dxdy(self *MBR, other *MBR) (float64, float64) {
+func distanceDxdy(self *MBR, other *MBR) (float64, float64) {
 	dx, dy := 0.0, 0.0
 	//find closest edge by x
 	if self[x2] < other[x1] {
@@ -24,7 +24,7 @@ func (mbr *MBR) Distance(other *MBR) float64 {
 	if mbr.Intersects(other) {
 		return 0.0
 	}
-	dx, dy := distance_dxdy(mbr, other)
+	dx, dy := distanceDxdy(mbr, other)
 	return math.Hypot(dx, dy)
 }
 
@@ -33,6 +33,6 @@ func (mbr *MBR) DistanceSquare(other *MBR) float64 {
 	if mbr.Intersects(other) {
 		return 0.0
 	}
-	dx, dy := distance_dxdy(mbr, other)
+	dx, dy := distanceDxdy(mbr, other)
 	return (dx * dx) + (dy * dy)
 }
