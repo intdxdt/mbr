@@ -22,26 +22,7 @@ func CreateMBR(minx, miny, maxx, maxy float64) MBR {
 
 
 //Bounding Box interface
-func (mbr *MBR) BBox() *MBR {
+func (mbr MBR) BBox() MBR {
 	return mbr
 }
 
-//Minimum X value
-func (mbr *MBR) MinX() float64 {
-	return mbr[x1]
-}
-
-//Minimum Y value
-func (mbr *MBR) MinY() float64 {
-	return mbr[y1]
-}
-
-//Maximum X value
-func (mbr *MBR) MaxX() float64 {
-	return mbr[x2]
-}
-
-//Maximum Y value
-func (mbr *MBR) MaxY() float64 {
-	return mbr[y2]
-}
