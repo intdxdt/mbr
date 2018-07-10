@@ -14,7 +14,7 @@ func (mbr *MBR) Equals(other *MBR) bool {
 }
 
 //Insersection of two bounding box
-func (mbr *MBR) Intersection(other *MBR) (*MBR, bool) {
+func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
 
 
 	minx, miny := nan, nan
@@ -49,7 +49,7 @@ func (mbr *MBR) Intersection(other *MBR) (*MBR, bool) {
 
 	}
 
-	return NewMBR(minx, miny, maxx, maxy), inters
+	return CreateMBR(minx, miny, maxx, maxy), inters
 }
 
 //Checks if two bounding boxes intesect
