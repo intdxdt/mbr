@@ -5,7 +5,7 @@ import (
 )
 
 type MBR [4]float64
-
+var nan = math.NaN()
 const (
 	x1 = iota
 	y1
