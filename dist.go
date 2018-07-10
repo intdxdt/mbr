@@ -3,7 +3,7 @@ package mbr
 import "github.com/intdxdt/math"
 
 //Distance computes the distance between two mbrs
-func (mbr *MBR) Distance(other MBR) float64 {
+func (mbr MBR) Distance(other MBR) float64 {
 	if mbr.Intersects(other) {
 		return 0.0
 	}

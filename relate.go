@@ -6,7 +6,7 @@ import (
 
 var nan = math.NaN()
 //Checks equallity of two bounding box
-func (mbr *MBR) Equals(other MBR) bool {
+func (mbr MBR) Equals(other MBR) bool {
 	return (
 		math.FloatEqual(mbr[x1], other[x1]) &&
 			math.FloatEqual(mbr[y1], other[y1]) &&
@@ -15,7 +15,7 @@ func (mbr *MBR) Equals(other MBR) bool {
 }
 
 //Insersection of two bounding box
-func (mbr *MBR) Intersection(other MBR) (MBR, bool) {
+func (mbr MBR) Intersection(other MBR) (MBR, bool) {
 	var minx, miny = nan, nan
 	var maxx, maxy = nan, nan
 	var inters = mbr.Intersects(other)
@@ -51,17 +51,16 @@ func (mbr *MBR) Intersection(other MBR) (MBR, bool) {
 }
 
 //Checks if two bounding boxes intesect
-func (mbr *MBR) Intersects(other MBR) bool {
+func (mbr MBR) Intersects(other MBR) bool {
 	//not disjoint
-	return !(
-		other[x1] > mbr[x2] ||
+	return !(other[x1] > mbr[x2] ||
 			other[x2] < mbr[x1] ||
 			other[y1] > mbr[y2] ||
 			other[y2] < mbr[y1])
 }
 
 //Checks if bounding box intersects point
-func (mbr *MBR) IntersectsPoint(pt []float64) bool {
+func (mbr MBR) IntersectsPoint(pt []float64) bool {
 	if len(pt) < 2 {
 		return false
 	}
@@ -69,7 +68,7 @@ func (mbr *MBR) IntersectsPoint(pt []float64) bool {
 }
 
 //Intersects bounding box defined by two points pt1 & pt2
-func (mbr *MBR) IntersectsBounds(pt1, pt2 []float64) bool {
+func (mbr MBR) IntersectsBounds(pt1, pt2 []float64) bool {
 	if len(pt1) < 2 || len(pt2) < 2 {
 		return false
 	}
@@ -88,14 +87,14 @@ func (mbr *MBR) IntersectsBounds(pt1, pt2 []float64) bool {
 }
 
 //Contains other bounding box
-func (mbr *MBR) Contains(other MBR) bool {
+func (mbr MBR) Contains(other MBR) bool {
 	return ((other[x1] >= mbr[x1]) &&
 		(other[x2] <= mbr[x2]) &&
 		(other[y1] >= mbr[y1]) &&
 		(other[y2] <= mbr[y2]))
 }
 
-func (mbr *MBR) ContainsXY(x, y float64) bool {
+func (mbr MBR) ContainsXY(x, y float64) bool {
 	return (x >= mbr[x1]) &&
 			(x <= mbr[x2]) &&
 			(y >= mbr[y1]) &&
@@ -103,7 +102,7 @@ func (mbr *MBR) ContainsXY(x, y float64) bool {
 }
 
 //CompletelyContainsXY is true if mbr completely contains location with {x, y}
-func (mbr *MBR) CompletelyContainsXY(x, y float64) bool {
+func (mbr MBR) CompletelyContainsXY(x, y float64) bool {
 	return (
 		(x > mbr[x1]) &&
 			(x < mbr[x2]) &&
@@ -112,7 +111,7 @@ func (mbr *MBR) CompletelyContainsXY(x, y float64) bool {
 }
 
 //CompletelyContainsMBR is true if mbr completely contains other
-func (mbr *MBR) CompletelyContainsMBR(other MBR) bool {
+func (mbr MBR) CompletelyContainsMBR(other MBR) bool {
 	return ((other[x1] > mbr[x1]) &&
 		(other[x2] < mbr[x2]) &&
 		(other[y1] > mbr[y1]) &&
@@ -120,6 +119,6 @@ func (mbr *MBR) CompletelyContainsMBR(other MBR) bool {
 }
 
 //Disjoint of mbr do not intersect
-func (mbr *MBR) Disjoint(m MBR) bool {
+func (mbr MBR) Disjoint(m MBR) bool {
 	return !mbr.Intersects(m)
 }
