@@ -13,7 +13,7 @@ func (mbr *MBR) Equals(other *MBR) bool {
 }
 
 //Insersection of two bounding box
-func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
+func (mbr *MBR) Intersection(other *MBR) (*MBR, bool) {
 	var minx, miny = nan, nan
 	var maxx, maxy = nan, nan
 	var inters = mbr.Intersects(other)
@@ -45,7 +45,7 @@ func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
 
 	}
 
-	return CreateMBR(minx, miny, maxx, maxy), inters
+	return New(minx, miny, maxx, maxy), inters
 }
 
 //Checks if two bounding boxes intesect
