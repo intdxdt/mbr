@@ -45,7 +45,7 @@ func (mbr *MBR) Intersection(other *MBR) (*MBR, bool) {
 
 	}
 
-	return New(minx, miny, maxx, maxy), inters
+	return NewMBR(minx, miny, maxx, maxy), inters
 }
 
 //Checks if two bounding boxes intesect
