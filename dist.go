@@ -5,7 +5,7 @@ import "github.com/intdxdt/math"
 //Distance computes the distance between two mbrs
 func (mbr *MBR) Distance(other *MBR) float64 {
 	if mbr.Intersects(other) {
-		return 0.0
+		return 0
 	}
 	var sminx, sminy =  mbr[x1],    mbr[y1]
 	var smaxx, smaxy =  mbr[x2],    mbr[y2]

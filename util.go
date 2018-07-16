@@ -9,7 +9,13 @@ func (mbr *MBR) AsArray() []float64 {
 func (mbr *MBR) AsPolyArray() [][]float64 {
 	var lx, ly = mbr[x1], mbr[y1]
 	var ux, uy = mbr[x2], mbr[y2]
-	return [][]float64{{lx, ly}, {lx, uy}, {ux, uy}, {ux, ly}, {lx, ly}}
+	return [][]float64{
+		{lx, ly},
+		{lx, uy},
+		{ux, uy},
+		{ux, ly},
+		{lx, ly},
+	}
 }
 
 //Width of bounding box
@@ -24,7 +30,7 @@ func (mbr *MBR) Height() float64 {
 
 //Area  of polygon
 func (mbr *MBR) Area() float64 {
-	return mbr.Height() * mbr.Width()
+	return mbr.Width() * mbr.Height()
 }
 
 //Is bounding dimensionless like a point: width & height is 0
@@ -34,7 +40,7 @@ func (mbr *MBR) IsPoint() bool {
 
 //Translate mbr  by change in x and y
 func (mbr *MBR) Translate(dx, dy float64) *MBR {
-	return NewMBR(
+	return New(
 		mbr[x1]+dx, mbr[y1]+dy,
 		mbr[x2]+dx, mbr[y2]+dy,
 	)

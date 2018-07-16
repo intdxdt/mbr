@@ -6,7 +6,6 @@ import (
 
 //Expand to include other mbr
 func (mbr *MBR) ExpandIncludeMBR(other *MBR) *MBR {
-
 	if other[x1] < mbr[x1] {
 		mbr[x1] = other[x1]
 	}
@@ -27,7 +26,6 @@ func (mbr *MBR) ExpandIncludeMBR(other *MBR) *MBR {
 
 //ExpandBy expands mbr by change in x and y
 func (mbr *MBR) ExpandByDelta(dx, dy float64) *MBR {
-
 	var minx, miny = mbr[x1]-dx, mbr[y1]-dy
 	var maxx, maxy = mbr[x2]+dx, mbr[y2]+dy
 
@@ -42,7 +40,6 @@ func (mbr *MBR) ExpandByDelta(dx, dy float64) *MBR {
 
 //ExpandXY expands mbr to include x and y
 func (mbr *MBR) ExpandIncludeXY(xCoord, yCoord float64) *MBR {
-
 	if xCoord < mbr[x1] {
 		mbr[x1] = xCoord
 	} else if xCoord > mbr[x2] {

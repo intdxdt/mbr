@@ -1,4 +1,4 @@
 # mbr 
-minimum bounding rectangle - go
+Minimum Bounding Rectangle
 
 coverage: 100.0% of statements
