@@ -35,6 +35,6 @@ func (mbr *MBR) BBox() *MBR {
 
 //Checks if is null
 func (mbr *MBR) IsNull() bool {
-	return mbr[x2] < mbr[x1] || mbr[y2] < mbr[y1]
+	return (mbr[x2] < mbr[x1]) || (mbr[y2] < mbr[y1])
 }
 
