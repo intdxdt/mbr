@@ -39,17 +39,17 @@ func (mbr *MBR) ExpandByDelta(dx, dy float64) *MBR {
 }
 
 //ExpandXY expands mbr to include x and y
-func (mbr *MBR) ExpandIncludeXY(xCoord, yCoord float64) *MBR {
-	if xCoord < mbr[x1] {
-		mbr[x1] = xCoord
-	} else if xCoord > mbr[x2] {
-		mbr[x2] = xCoord
+func (mbr *MBR) ExpandIncludeXY(x, y float64) *MBR {
+	if x < mbr[x1] {
+		mbr[x1] = x
+	} else if x > mbr[x2] {
+		mbr[x2] = x
 	}
 
-	if yCoord < mbr[y1] {
-		mbr[y1] = yCoord
-	} else if yCoord > mbr[y2] {
-		mbr[y2] = yCoord
+	if y < mbr[y1] {
+		mbr[y1] = y
+	} else if y > mbr[y2] {
+		mbr[y2] = y
 	}
 
 	return mbr
