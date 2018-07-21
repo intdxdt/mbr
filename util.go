@@ -39,8 +39,8 @@ func (mbr *MBR) IsPoint() bool {
 }
 
 //Translate mbr  by change in x and y
-func (mbr *MBR) Translate(dx, dy float64) *MBR {
-	return New(
+func (mbr *MBR) Translate(dx, dy float64) MBR {
+	return CreateMBR(
 		mbr[x1]+dx, mbr[y1]+dy,
 		mbr[x2]+dx, mbr[y2]+dy,
 	)
