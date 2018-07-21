@@ -15,9 +15,12 @@ const (
 
 //Create new bounding box
 func CreateMBR(minx, miny, maxx, maxy float64) MBR {
-	minx, maxx = math.MinF64(minx, maxx), math.MaxF64(minx, maxx)
-	miny, maxy = math.MinF64(miny, maxy), math.MaxF64(miny, maxy)
-	return MBR{minx, miny, maxx, maxy}
+	return MBR{
+		math.MinF64(minx, maxx),
+		math.MinF64(miny, maxy),
+		math.MaxF64(minx, maxx),
+		math.MaxF64(miny, maxy),
+	}
 }
 
 //Make a copy of mbr
