@@ -70,18 +70,12 @@ func (mbr *MBR) IntersectsBounds(pt1, pt2 []float64) bool {
 	if len(pt1) < 2 || len(pt2) < 2 {
 		return false
 	}
-	var minq = math.MinF64(pt1[x1], pt2[x1])
-	var maxq = math.MaxF64(pt1[x1], pt2[x1])
 
-	if mbr[x1] > maxq || mbr[x2] < minq {
+	if mbr[x1] > math.MaxF64(pt1[x1], pt2[x1]) || mbr[x2] < math.MinF64(pt1[x1], pt2[x1]) {
 		return false
 	}
-
-	minq = math.MinF64(pt1[y1], pt2[y1])
-	maxq = math.MaxF64(pt1[y1], pt2[y1])
-
 	// not disjoint
-	return !(mbr[y1] > maxq || mbr[y2] < minq)
+	return !(mbr[y1] > math.MaxF64(pt1[y1], pt2[y1]) || mbr[y2] < math.MinF64(pt1[y1], pt2[y1]))
 }
 
 //Contains other bounding box
