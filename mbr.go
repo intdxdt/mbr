@@ -33,6 +33,11 @@ func (mbr *MBR) BBox() *MBR {
 	return mbr
 }
 
+//Bounding Box interface
+func (mbr *MBR) Bounds() MBR {
+	return *mbr
+}
+
 //Checks if is null
 func (mbr *MBR) IsNull() bool {
 	return (mbr[x2] < mbr[x1]) || (mbr[y2] < mbr[y1])
