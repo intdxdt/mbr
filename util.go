@@ -53,3 +53,20 @@ func (mbr *MBR) Center() []float64 {
 		(mbr[y1] + mbr[y2]) / 2.0,
 	}
 }
+
+//max
+func maxf64(x, y float64) float64 {
+	if y > x {
+		return y
+	}
+	return x
+}
+
+//min
+func minf64(x, y float64) float64 {
+	if y < x {
+		return y
+	}
+	return x
+}
+

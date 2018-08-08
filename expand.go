@@ -1,9 +1,5 @@
 package mbr
 
-import (
-	"github.com/intdxdt/math"
-)
-
 //Expand to include other mbr
 func (mbr *MBR) ExpandIncludeMBR(other *MBR) *MBR {
 	if other[x1] < mbr[x1] {
@@ -29,8 +25,8 @@ func (mbr *MBR) ExpandByDelta(dx, dy float64) *MBR {
 	var minx, miny = mbr[x1]-dx, mbr[y1]-dy
 	var maxx, maxy = mbr[x2]+dx, mbr[y2]+dy
 
-	minx, maxx = math.MinF64(minx, maxx), math.MaxF64(minx, maxx)
-	miny, maxy = math.MinF64(miny, maxy), math.MaxF64(miny, maxy)
+	minx, maxx = minf64(minx, maxx), maxf64(minx, maxx)
+	miny, maxy = minf64(miny, maxy), maxf64(miny, maxy)
 
 	mbr[x1], mbr[y1] = minx, miny
 	mbr[x2], mbr[y2] = maxx, maxy

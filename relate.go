@@ -71,11 +71,11 @@ func (mbr *MBR) IntersectsBounds(pt1, pt2 []float64) bool {
 		return false
 	}
 
-	if mbr[x1] > math.MaxF64(pt1[x1], pt2[x1]) || mbr[x2] < math.MinF64(pt1[x1], pt2[x1]) {
+	if mbr[x1] > maxf64(pt1[x1], pt2[x1]) || mbr[x2] < minf64(pt1[x1], pt2[x1]) {
 		return false
 	}
 	// not disjoint
-	return !(mbr[y1] > math.MaxF64(pt1[y1], pt2[y1]) || mbr[y2] < math.MinF64(pt1[y1], pt2[y1]))
+	return !(mbr[y1] > maxf64(pt1[y1], pt2[y1]) || mbr[y2] < minf64(pt1[y1], pt2[y1]))
 }
 
 //Contains other bounding box
