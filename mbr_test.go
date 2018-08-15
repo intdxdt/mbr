@@ -42,7 +42,7 @@ func TestMBR(t *testing.T) {
 			g.Assert(cloneM0123.Equals(&m0123)).IsTrue()
 			g.Assert(m0.Equals(&m1)).IsTrue()
 			g.Assert(m0.BBox().Equals(&m0)).IsTrue()
-			g.Assert(m0.Bounds()).Equal(m0)
+			g.Assert(m0.Bounds()).Equal(&m0)
 			g.Assert(m00.Equals(&m1)).IsTrue()
 		})
 

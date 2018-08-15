@@ -34,8 +34,8 @@ func (mbr *MBR) BBox() *MBR {
 }
 
 //Bounding Box interface
-func (mbr *MBR) Bounds() MBR {
-	return *mbr
+func (mbr *MBR) Bounds() *MBR {
+	return mbr
 }
 
 //Checks if is null
