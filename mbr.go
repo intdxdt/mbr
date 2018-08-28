@@ -7,10 +7,10 @@ import (
 var nan = math.NaN()
 
 type MBR struct {
-	minx float64
-	miny float64
-	maxx float64
-	maxy float64
+	MinX float64
+	MinY float64
+	MaxX float64
+	MaxY float64
 }
 
 //Create new bounding box
@@ -35,5 +35,5 @@ func (mbr *MBR) BBox() *MBR {
 
 //Checks if is null
 func (mbr *MBR) IsNull() bool {
-	return (mbr.maxx < mbr.minx) || (mbr.maxy < mbr.miny)
+	return (mbr.MaxX < mbr.MinX) || (mbr.MaxY < mbr.MinY)
 }

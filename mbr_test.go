@@ -56,8 +56,8 @@ func TestMBR(t *testing.T) {
 			nm00, success := m00.Intersection(&n00)
 			g.Assert(success).IsTrue()
 
-			g.Assert(nm00.minx == 0.0 && nm00.miny == 0.0).IsTrue()
-			g.Assert(nm00.maxx == 0.0 && nm00.maxy == 0.0).IsTrue()
+			g.Assert(nm00.MinX == 0.0 && nm00.MinY == 0.0).IsTrue()
+			g.Assert(nm00.MaxX == 0.0 && nm00.MaxY == 0.0).IsTrue()
 			g.Assert(nm00.IsPoint()).IsTrue()
 
 			g.Assert(m1.Intersects(&m2)).IsFalse()
@@ -124,7 +124,7 @@ func TestMBR(t *testing.T) {
 			// intersects but segment are disjoint
 			g.Assert(mp12.Intersects(&mp34)).IsTrue()
 			g.Assert(mp12.IntersectsBounds(p3[0], p3[1], p4[0], p4[1])).IsTrue()
-			g.Assert(mp12.IntersectsBounds(m1.minx, m1.miny, m1.maxx, m1.maxy)).IsFalse()
+			g.Assert(mp12.IntersectsBounds(m1.MinX, m1.MinY, m1.MaxX, m1.MaxY)).IsFalse()
 			g.Assert(mp12.IntersectsPoint(p3)).IsFalse()
 			g.Assert(m1.ContainsXY(1, 1)).IsTrue()
 

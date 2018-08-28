@@ -2,50 +2,50 @@ package mbr
 
 //Expand to include other mbr
 func (mbr *MBR) ExpandIncludeMBR(other *MBR) *MBR {
-	if other.minx < mbr.minx {
-		mbr.minx = other.minx
+	if other.MinX < mbr.MinX {
+		mbr.MinX = other.MinX
 	}
 
-	if other.maxx > mbr.maxx {
-		mbr.maxx = other.maxx
+	if other.MaxX > mbr.MaxX {
+		mbr.MaxX = other.MaxX
 	}
 
-	if other.miny < mbr.miny {
-		mbr.miny = other.miny
+	if other.MinY < mbr.MinY {
+		mbr.MinY = other.MinY
 	}
 
-	if other.maxy > mbr.maxy {
-		mbr.maxy = other.maxy
+	if other.MaxY > mbr.MaxY {
+		mbr.MaxY = other.MaxY
 	}
 	return mbr
 }
 
 //ExpandBy expands mbr by change in x and y
 func (mbr *MBR) ExpandByDelta(dx, dy float64) *MBR {
-	var minx, miny = mbr.minx-dx, mbr.miny-dy
-	var maxx, maxy = mbr.maxx+dx, mbr.maxy+dy
+	var minx, miny = mbr.MinX-dx, mbr.MinY-dy
+	var maxx, maxy = mbr.MaxX+dx, mbr.MaxY+dy
 
 	minx, maxx = minf64(minx, maxx), maxf64(minx, maxx)
 	miny, maxy = minf64(miny, maxy), maxf64(miny, maxy)
 
-	mbr.minx, mbr.miny = minx, miny
-	mbr.maxx, mbr.maxy = maxx, maxy
+	mbr.MinX, mbr.MinY = minx, miny
+	mbr.MaxX, mbr.MaxY = maxx, maxy
 
 	return mbr
 }
 
 //ExpandXY expands mbr to include x and y
 func (mbr *MBR) ExpandIncludeXY(x, y float64) *MBR {
-	if x < mbr.minx {
-		mbr.minx = x
-	} else if x > mbr.maxx {
-		mbr.maxx = x
+	if x < mbr.MinX {
+		mbr.MinX = x
+	} else if x > mbr.MaxX {
+		mbr.MaxX = x
 	}
 
-	if y < mbr.miny {
-		mbr.miny = y
-	} else if y > mbr.maxy {
-		mbr.maxy = y
+	if y < mbr.MinY {
+		mbr.MinY = y
+	} else if y > mbr.MaxY {
+		mbr.MaxY = y
 	}
 
 	return mbr

@@ -6,8 +6,8 @@ import (
 
 //String converts mbr to wkt string
 func (mbr *MBR) String() string {
-	var lx, ly = mbr.minx, mbr.miny
-	var ux, uy = mbr.maxx, mbr.maxy
+	var lx, ly = mbr.MinX, mbr.MinY
+	var ux, uy = mbr.MaxX, mbr.MaxY
 
 	return fmt.Sprintf(
 		"POLYGON ((%v %v, %v %v, %v %v, %v %v, %v %v))",

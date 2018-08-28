@@ -6,10 +6,10 @@ import "github.com/intdxdt/math"
 //Checks equallity of two bounding box
 func (mbr *MBR) Equals(other *MBR) bool {
 	return (
-		math.FloatEqual(mbr.minx, other.minx) &&
-			math.FloatEqual(mbr.miny, other.miny) &&
-			math.FloatEqual(mbr.maxx, other.maxx) &&
-			math.FloatEqual(mbr.maxy, other.maxy))
+		math.FloatEqual(mbr.MinX, other.MinX) &&
+			math.FloatEqual(mbr.MinY, other.MinY) &&
+			math.FloatEqual(mbr.MaxX, other.MaxX) &&
+			math.FloatEqual(mbr.MaxY, other.MaxY))
 }
 
 //Insersection of two bounding box
@@ -19,28 +19,28 @@ func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
 	var intersects = mbr.Intersects(other)
 
 	if intersects {
-		if mbr.minx > other.minx {
-			minx = mbr.minx
+		if mbr.MinX > other.MinX {
+			minx = mbr.MinX
 		} else {
-			minx = other.minx
+			minx = other.MinX
 		}
 
-		if mbr.miny > other.miny {
-			miny = mbr.miny
+		if mbr.MinY > other.MinY {
+			miny = mbr.MinY
 		} else {
-			miny = other.miny
+			miny = other.MinY
 		}
 
-		if mbr.maxx < other.maxx {
-			maxx = mbr.maxx
+		if mbr.MaxX < other.MaxX {
+			maxx = mbr.MaxX
 		} else {
-			maxx = other.maxx
+			maxx = other.MaxX
 		}
 
-		if mbr.maxy < other.maxy {
-			maxy = mbr.maxy
+		if mbr.MaxY < other.MaxY {
+			maxy = mbr.MaxY
 		} else {
-			maxy = other.maxy
+			maxy = other.MaxY
 		}
 	}
 
@@ -51,10 +51,10 @@ func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
 func (mbr *MBR) Intersects(other *MBR) bool {
 	//not disjoint
 	return !(
-		other.minx > mbr.maxx ||
-		other.maxx < mbr.minx ||
-		other.miny > mbr.maxy ||
-		other.maxy < mbr.miny)
+		other.MinX > mbr.MaxX ||
+		other.MaxX < mbr.MinX ||
+		other.MinY > mbr.MaxY ||
+		other.MaxY < mbr.MinY)
 }
 
 //Checks if bounding box intersects point
@@ -67,44 +67,44 @@ func (mbr *MBR) IntersectsPoint(pt []float64) bool {
 
 //Intersects bounding box defined by two points a & b
 func (mbr *MBR) IntersectsBounds(ax, ay, bx, by float64) bool {
-	if mbr.minx > maxf64(ax, bx) || mbr.maxx < minf64(ax, bx) {
+	if mbr.MinX > maxf64(ax, bx) || mbr.MaxX < minf64(ax, bx) {
 		return false
 	}
 	// not disjoint
-	return !(mbr.miny > maxf64(ay, by) || mbr.maxy < minf64(ay, by))
+	return !(mbr.MinY > maxf64(ay, by) || mbr.MaxY < minf64(ay, by))
 }
 
 //Contains other bounding box
 func (mbr *MBR) Contains(other *MBR) bool {
 	return (
-		(other.minx >= mbr.minx) &&
-		(other.maxx <= mbr.maxx) &&
-		(other.miny >= mbr.miny) &&
-		(other.maxy <= mbr.maxy))
+		(other.MinX >= mbr.MinX) &&
+		(other.MaxX <= mbr.MaxX) &&
+		(other.MinY >= mbr.MinY) &&
+		(other.MaxY <= mbr.MaxY))
 }
 
 func (mbr *MBR) ContainsXY(x, y float64) bool {
-	return (x >= mbr.minx) &&
-		(x <= mbr.maxx) &&
-		(y >= mbr.miny) &&
-		(y <= mbr.maxy)
+	return (x >= mbr.MinX) &&
+		(x <= mbr.MaxX) &&
+		(y >= mbr.MinY) &&
+		(y <= mbr.MaxY)
 }
 
 //CompletelyContainsXY is true if mbr completely contains location with {x, y}
 func (mbr *MBR) CompletelyContainsXY(x, y float64) bool {
-	return ((x > mbr.minx) &&
-			(x < mbr.maxx) &&
-			(y > mbr.miny) &&
-			(y < mbr.maxy))
+	return ((x > mbr.MinX) &&
+			(x < mbr.MaxX) &&
+			(y > mbr.MinY) &&
+			(y < mbr.MaxY))
 }
 
 //CompletelyContainsMBR is true if mbr completely contains other
 func (mbr *MBR) CompletelyContainsMBR(other *MBR) bool {
 	return (
-		(other.minx > mbr.minx) &&
-		(other.maxx < mbr.maxx) &&
-		(other.miny > mbr.miny) &&
-		(other.maxy < mbr.maxy))
+		(other.MinX > mbr.MinX) &&
+		(other.MaxX < mbr.MaxX) &&
+		(other.MinY > mbr.MinY) &&
+		(other.MaxY < mbr.MaxY))
 }
 
 //Disjoint of mbr do not intersect
