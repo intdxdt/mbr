@@ -7,10 +7,10 @@ func (mbr *MBR) Distance(other *MBR) float64 {
 	if mbr.Intersects(other) {
 		return 0
 	}
-	var sminx, sminy =  mbr[x1],    mbr[y1]
-	var smaxx, smaxy =  mbr[x2],    mbr[y2]
-	var ominx, ominy =  other[x1],  other[y1]
-	var omaxx, omaxy =  other[x2],  other[y2]
+	var sminx, sminy =  mbr.minx,    mbr.miny
+	var smaxx, smaxy =  mbr.maxx,    mbr.maxy
+	var ominx, ominy =  other.minx,  other.miny
+	var omaxx, omaxy =  other.maxx,  other.maxy
 
 	var dx, dy float64
 	//find closest edge by x

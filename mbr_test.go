@@ -4,6 +4,7 @@ import (
 	"testing"
 	"github.com/intdxdt/math"
 	"github.com/franela/goblin"
+	"time"
 )
 
 func TestMBR(t *testing.T) {
@@ -36,17 +37,18 @@ func TestMBR(t *testing.T) {
 		var cloneM0123 = m0123.Clone()
 
 		g.It("equals ", func() {
+			g.Timeout(1 * time.Hour)
 			g.Assert(null.IsNull()).IsTrue()
 			g.Assert(m0.IsNull()).IsFalse()
 			g.Assert(m1.AsArray()).Equal([]float64{0, 0, 2, 2})
 			g.Assert(cloneM0123.Equals(&m0123)).IsTrue()
 			g.Assert(m0.Equals(&m1)).IsTrue()
 			g.Assert(m0.BBox().Equals(&m0)).IsTrue()
-			g.Assert(m0.Bounds()).Equal(&m0)
 			g.Assert(m00.Equals(&m1)).IsTrue()
 		})
 
 		g.It("intersects, distance", func() {
+			g.Timeout(1 * time.Hour)
 			g.Assert(m1.IntersectsPoint(p)).IsTrue()
 			g.Assert(m1.IntersectsPoint(p0)).IsFalse()
 
@@ -54,8 +56,8 @@ func TestMBR(t *testing.T) {
 			nm00, success := m00.Intersection(&n00)
 			g.Assert(success).IsTrue()
 
-			g.Assert(nm00[x1] == 0.0 && nm00[y1] == 0.0).IsTrue()
-			g.Assert(nm00[x2] == 0.0 && nm00[y2] == 0.0).IsTrue()
+			g.Assert(nm00.minx == 0.0 && nm00.miny == 0.0).IsTrue()
+			g.Assert(nm00.maxx == 0.0 && nm00.maxy == 0.0).IsTrue()
 			g.Assert(nm00.IsPoint()).IsTrue()
 
 			g.Assert(m1.Intersects(&m2)).IsFalse()
@@ -110,20 +112,19 @@ func TestMBR(t *testing.T) {
 		})
 
 		g.It("contains, disjoint , contains completely", func() {
+			g.Timeout(1 * time.Hour)
 			var p1 = []float64{-5.95, 9.28}
 			var p2 = []float64{-0.11, 12.56}
 			var p3 = []float64{3.58, 11.79}
 			var p4 = []float64{-1.16, 14.71}
-			var p4x = []float64{-1.16}
 
-			var mp12 = CreateMBR(p1[x1], p1[y1], p2[x1], p2[y1])
-			var mp34 = CreateMBR(p3[x1], p3[y1], p4[x1], p4[y1])
+			var mp12 = CreateMBR(p1[0], p1[1], p2[0], p2[1])
+			var mp34 = CreateMBR(p3[0], p3[1], p4[0], p4[1])
 
 			// intersects but segment are disjoint
 			g.Assert(mp12.Intersects(&mp34)).IsTrue()
-			g.Assert(mp12.IntersectsBounds(p3, p4)).IsTrue()
-			g.Assert(mp12.IntersectsBounds(p3, p4x)).IsFalse()
-			g.Assert(mp12.IntersectsBounds(m1[:2], m1[2:])).IsFalse()
+			g.Assert(mp12.IntersectsBounds(p3[0], p3[1], p4[0], p4[1])).IsTrue()
+			g.Assert(mp12.IntersectsBounds(m1.minx, m1.miny, m1.maxx, m1.maxy)).IsFalse()
 			g.Assert(mp12.IntersectsPoint(p3)).IsFalse()
 			g.Assert(m1.ContainsXY(1, 1)).IsTrue()
 

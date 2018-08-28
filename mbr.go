@@ -4,14 +4,14 @@ import (
 	"github.com/intdxdt/math"
 )
 
-type MBR [4]float64
 var nan = math.NaN()
-const (
-	x1 = iota
-	y1
-	x2
-	y2
-)
+
+type MBR struct {
+	minx float64
+	miny float64
+	maxx float64
+	maxy float64
+}
 
 //Create new bounding box
 func CreateMBR(minx, miny, maxx, maxy float64) MBR {
@@ -33,13 +33,7 @@ func (mbr *MBR) BBox() *MBR {
 	return mbr
 }
 
-//Bounding Box interface
-func (mbr *MBR) Bounds() *MBR {
-	return mbr
-}
-
 //Checks if is null
 func (mbr *MBR) IsNull() bool {
-	return (mbr[x2] < mbr[x1]) || (mbr[y2] < mbr[y1])
+	return (mbr.maxx < mbr.minx) || (mbr.maxy < mbr.miny)
 }
-
