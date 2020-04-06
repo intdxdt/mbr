@@ -1,0 +1,12 @@
+github.com/franela/goblin v0.0.0-20200404164657-567a4070c437 h1:xwZofahjU6dndU6xXbPmdhOBAB04RIEhlUmdlBvBcIs=
+github.com/franela/goblin v0.0.0-20200404164657-567a4070c437/go.mod h1:VzmDKDJVZI3aJmnRI9VjAn9nJ8qPPsN1fqzr9dqInIo=
+github.com/intdxdt/dbits v0.0.0-20171026062838-f7e9caad92f4/go.mod h1:GLKbRshq9XwOsyiyfx2vRXbKAeDBwo8uNb6pLPDipr4=
+github.com/intdxdt/math v0.0.0-20191016044118-fc6774234831 h1:+pFoIBn0iRaHyYVoBVcmAOXZ532wn9PLVnPH0eJDnT0=
+github.com/intdxdt/math v0.0.0-20191016044118-fc6774234831/go.mod h1:wEpW4fnj05cXU3mhSlg4OqET+SSftTRqPs06hd/9RGg=
+github.com/intdxdt/math v1.0.0 h1:zjwziZDSJwuxg6gTY12U2cDoZpAt3sFlpbJzFMaD4qk=
+github.com/intdxdt/math v1.0.0/go.mod h1:/iQnUD7sXRLoOziKeJ628KqhSF3GQi7HdQ3LsbgiKpk=
+github.com/intdxdt/robust v0.0.0-20180605033432-38456944e01f h1:6CoBLlwnhyrNbrDCq0qX5cMlrradKFoOsF/P6qxkVbQ=
+github.com/intdxdt/robust v0.0.0-20180605033432-38456944e01f/go.mod h1:n0OhqhcXQfxAnnMfvAxj8xOHxBlfsIuF2VdH2E+l184=
+github.com/intdxdt/robust v1.0.0 h1:x5pNk5s7wF4I2s60zM57XSatrK7QXagOctFjmahrsUU=
+github.com/intdxdt/robust v1.0.0/go.mod h1:uIGXMmYcuFItUjeG37oxt0x7RFXdL4MEfXP4uVstLZ0=
+github.com/intdxdt/twiddle v0.0.0-20180605015803-8a5d3aeb2e67/go.mod h1:aos2CXzSXDP82nQmZbxyi3w7TAdnhNZ2kLRm3pI5SjI=
