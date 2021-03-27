@@ -1,0 +1,9 @@
+github.com/franela/goblin v0.0.0-20200404164657-567a4070c437/go.mod h1:VzmDKDJVZI3aJmnRI9VjAn9nJ8qPPsN1fqzr9dqInIo=
+github.com/franela/goblin v0.0.0-20210113153425-413781f5e6c8 h1:QVPknD9yAYAmmmERIxdPFY6yf8d7xqoieNs/1C9ieCk=
+github.com/franela/goblin v0.0.0-20210113153425-413781f5e6c8/go.mod h1:VzmDKDJVZI3aJmnRI9VjAn9nJ8qPPsN1fqzr9dqInIo=
+github.com/intdxdt/dbits v0.0.0-20171026062838-f7e9caad92f4/go.mod h1:GLKbRshq9XwOsyiyfx2vRXbKAeDBwo8uNb6pLPDipr4=
+github.com/intdxdt/math v1.0.0 h1:zjwziZDSJwuxg6gTY12U2cDoZpAt3sFlpbJzFMaD4qk=
+github.com/intdxdt/math v1.0.0/go.mod h1:/iQnUD7sXRLoOziKeJ628KqhSF3GQi7HdQ3LsbgiKpk=
+github.com/intdxdt/robust v1.0.0 h1:x5pNk5s7wF4I2s60zM57XSatrK7QXagOctFjmahrsUU=
+github.com/intdxdt/robust v1.0.0/go.mod h1:uIGXMmYcuFItUjeG37oxt0x7RFXdL4MEfXP4uVstLZ0=
+github.com/intdxdt/twiddle v0.0.0-20180605015803-8a5d3aeb2e67/go.mod h1:aos2CXzSXDP82nQmZbxyi3w7TAdnhNZ2kLRm3pI5SjI=

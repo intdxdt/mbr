@@ -1,9 +1,9 @@
 package mbr
 
 import (
-	"testing"
-	"github.com/intdxdt/math"
 	"github.com/franela/goblin"
+	"github.com/intdxdt/math"
+	"testing"
 	"time"
 )
 
