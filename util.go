@@ -1,11 +1,11 @@
 package mbr
 
-//Bounding box as Array
+// AsArray - bounding box as Array
 func (mbr *MBR) AsArray() []float64 {
 	return []float64{mbr.MinX, mbr.MinY, mbr.MaxX, mbr.MaxY}
 }
 
-//As polygon array
+// AsPolyArray - as polygon array
 func (mbr *MBR) AsPolyArray() [][]float64 {
 	var lx, ly = mbr.MinX, mbr.MinY
 	var ux, uy = mbr.MaxX, mbr.MaxY
@@ -18,27 +18,27 @@ func (mbr *MBR) AsPolyArray() [][]float64 {
 	}
 }
 
-//Width of bounding box
+// Width of bounding box
 func (mbr *MBR) Width() float64 {
 	return mbr.MaxX - mbr.MinX
 }
 
-//Height of bounding box
+// Height of bounding box
 func (mbr *MBR) Height() float64 {
 	return mbr.MaxY - mbr.MinY
 }
 
-//Area  of polygon
+// Area  of polygon
 func (mbr *MBR) Area() float64 {
 	return mbr.Width() * mbr.Height()
 }
 
-//Is bounding dimensionless like a point: width & height is 0
+// IsPoint - is bounding dimensionless like a point: width & height is 0 ?
 func (mbr *MBR) IsPoint() bool {
 	return mbr.Height() == 0.0 && mbr.Width() == 0.0
 }
 
-//Translate mbr  by change in x and y
+// Translate mbr  by change in x and y
 func (mbr *MBR) Translate(dx, dy float64) MBR {
 	return CreateMBR(
 		mbr.MinX+dx, mbr.MinY+dy,
@@ -46,7 +46,7 @@ func (mbr *MBR) Translate(dx, dy float64) MBR {
 	)
 }
 
-//Center of bounding box
+// Center of bounding box
 func (mbr *MBR) Center() []float64 {
 	return []float64{
 		(mbr.MinX + mbr.MaxX) / 2.0,
@@ -54,19 +54,18 @@ func (mbr *MBR) Center() []float64 {
 	}
 }
 
-//max
-func maxf64(x, y float64) float64 {
+// max
+func maxF64(x, y float64) float64 {
 	if y > x {
 		return y
 	}
 	return x
 }
 
-//min
-func minf64(x, y float64) float64 {
+// min
+func minF64(x, y float64) float64 {
 	if y < x {
 		return y
 	}
 	return x
 }
-

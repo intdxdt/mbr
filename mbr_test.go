@@ -30,7 +30,7 @@ func TestMBR(t *testing.T) {
 
 	var p = []float64{1.7, 1.5, 3.4} // POINT(1.7 1.5, 3.4)
 	var p0 = []float64{1.7}          // POINT(1.7 1.5)
-	var null = &MBR{1, 1, -1, -1}
+	var null = CreateNullMBR()
 
 	g.Describe("minimum bounding box", func() {
 		var m0123 = CreateMBR(0, 2, 1, 3)

@@ -13,27 +13,32 @@ type MBR struct {
 	MaxY float64
 }
 
-//Create new bounding box
+// CreateMBR - bounding box
 func CreateMBR(minx, miny, maxx, maxy float64) MBR {
 	return MBR{
-		minf64(minx, maxx),
-		minf64(miny, maxy),
-		maxf64(minx, maxx),
-		maxf64(miny, maxy),
+		minF64(minx, maxx),
+		minF64(miny, maxy),
+		maxF64(minx, maxx),
+		maxF64(miny, maxy),
 	}
 }
 
-//Make a copy of mbr
+// CreateNullMBR - null bounding box
+func CreateNullMBR() MBR {
+	return MBR{1, 1, -1, -1}
+}
+
+// Clone - make a copy of mbr
 func (mbr *MBR) Clone() MBR {
 	return *mbr
 }
 
-//Bounding Box interface
+// BBox - Bounding Box interface
 func (mbr *MBR) BBox() *MBR {
 	return mbr
 }
 
-//Checks if is null
+// IsNull - Checks if is null
 func (mbr *MBR) IsNull() bool {
 	return (mbr.MaxX < mbr.MinX) || (mbr.MaxY < mbr.MinY)
 }
