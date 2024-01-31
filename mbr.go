@@ -1,14 +1,11 @@
 package mbr
 
 import (
-	"github.com/intdxdt/math"
 	"golang.org/x/exp/constraints"
 )
 
-var nan = math.NaN()
-
 type Num interface {
-	constraints.Signed | constraints.Float
+	constraints.Integer | constraints.Float
 }
 
 type MBR[T Num] struct {
@@ -30,7 +27,7 @@ func CreateMBR[T Num](minx, miny, maxx, maxy T) MBR[T] {
 
 // CreateNullMBR - null bounding box
 func CreateNullMBR[T Num]() MBR[T] {
-	return MBR[T]{1, 1, -1, -1}
+	return MBR[T]{1, 1, 0, 0}
 }
 
 // Clone - make a copy of mbr

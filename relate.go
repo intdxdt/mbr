@@ -11,11 +11,11 @@ func (mbr *MBR[T]) Equals(other *MBR[T]) bool {
 
 // Intersection  of two bounding box
 func (mbr *MBR[T]) Intersection(other *MBR[T]) (MBR[T], bool) {
-	var minx, miny = T(nan), T(nan)
-	var maxx, maxy = T(nan), T(nan)
 	var intersects = mbr.Intersects(other)
 
 	if intersects {
+		var minx, miny, maxx, maxy T
+
 		if mbr.MinX > other.MinX {
 			minx = mbr.MinX
 		} else {
@@ -39,12 +39,13 @@ func (mbr *MBR[T]) Intersection(other *MBR[T]) (MBR[T], bool) {
 		} else {
 			maxy = other.MaxY
 		}
-	}
 
-	return MBR[T]{minx, miny, maxx, maxy}, intersects
+		return MBR[T]{minx, miny, maxx, maxy}, true
+	}
+	return CreateNullMBR[T](), false
 }
 
-// Intersects - Checks if two bounding boxes intesect
+// Intersects - Checks if two bounding boxes intersect
 func (mbr *MBR[T]) Intersects(other *MBR[T]) bool {
 	//not disjoint
 	return !(other.MinX > mbr.MaxX ||
