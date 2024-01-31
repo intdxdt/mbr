@@ -2,43 +2,48 @@ package mbr
 
 import (
 	"github.com/intdxdt/math"
+	"golang.org/x/exp/constraints"
 )
 
 var nan = math.NaN()
 
-type MBR struct {
-	MinX float64
-	MinY float64
-	MaxX float64
-	MaxY float64
+type Num interface {
+	constraints.Signed | constraints.Float
+}
+
+type MBR[T Num] struct {
+	MinX T
+	MinY T
+	MaxX T
+	MaxY T
 }
 
 // CreateMBR - bounding box
-func CreateMBR(minx, miny, maxx, maxy float64) MBR {
-	return MBR{
-		minF64(minx, maxx),
-		minF64(miny, maxy),
-		maxF64(minx, maxx),
-		maxF64(miny, maxy),
+func CreateMBR[T Num](minx, miny, maxx, maxy T) MBR[T] {
+	return MBR[T]{
+		min(minx, maxx),
+		min(miny, maxy),
+		max(minx, maxx),
+		max(miny, maxy),
 	}
 }
 
 // CreateNullMBR - null bounding box
-func CreateNullMBR() MBR {
-	return MBR{1, 1, -1, -1}
+func CreateNullMBR[T Num]() MBR[T] {
+	return MBR[T]{1, 1, -1, -1}
 }
 
 // Clone - make a copy of mbr
-func (mbr *MBR) Clone() MBR {
+func (mbr *MBR[T]) Clone() MBR[T] {
 	return *mbr
 }
 
 // BBox - Bounding Box interface
-func (mbr *MBR) BBox() *MBR {
+func (mbr *MBR[T]) BBox() *MBR[T] {
 	return mbr
 }
 
 // IsNull - Checks if is null
-func (mbr *MBR) IsNull() bool {
+func (mbr *MBR[T]) IsNull() bool {
 	return (mbr.MaxX < mbr.MinX) || (mbr.MaxY < mbr.MinY)
 }

@@ -3,7 +3,7 @@ package mbr
 import "github.com/intdxdt/math"
 
 // Distance - computes the distance between two MBRs
-func (mbr *MBR) Distance(other *MBR) float64 {
+func (mbr *MBR[T]) Distance(other *MBR[T]) float64 {
 	if mbr.Intersects(other) {
 		return 0
 	}
@@ -12,8 +12,8 @@ func (mbr *MBR) Distance(other *MBR) float64 {
 	var ominx, ominy = other.MinX, other.MinY
 	var omaxx, omaxy = other.MaxX, other.MaxY
 
-	var dx, dy float64
-	//find closest edge by x
+	var dx, dy T
+	//find the closest edge by x
 	if smaxx < ominx {
 		dx = ominx - smaxx
 	} else if sminx > omaxx {
@@ -26,5 +26,5 @@ func (mbr *MBR) Distance(other *MBR) float64 {
 	} else if sminy > omaxy {
 		dy = sminy - omaxy
 	}
-	return math.Hypot(dx, dy)
+	return math.Hypot(float64(dx), float64(dy))
 }

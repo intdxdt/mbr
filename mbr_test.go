@@ -10,27 +10,27 @@ import (
 func TestMBR(t *testing.T) {
 	var g = goblin.Goblin(t)
 
-	var m00 = CreateMBR(0, 0, 0, 0)
-	m00.ExpandIncludeXY(2, 2)
+	var m00 = CreateMBR(0., 0., 0., 0.)
+	m00.ExpandIncludeXY(2., 2.)
 
-	var n00 = CreateMBR(0, 0, 0, 0)
-	n00.ExpandIncludeXY(-2, -2)
+	var n00 = CreateMBR(0., 0., 0., 0.)
+	n00.ExpandIncludeXY(-2., -2.)
 
-	var m0 = CreateMBR(1, 1, 1, 1)
-	m0.ExpandByDelta(1, 1)
+	var m0 = CreateMBR(1., 1., 1., 1.)
+	m0.ExpandByDelta(1., 1.)
 
-	var m1 = CreateMBR(0, 0, 2, 2)
-	var m2 = CreateMBR(4, 5, 8, 9)
-	var m3 = CreateMBR(1.7, 1.5, 5, 9)
-	var m4 = CreateMBR(5, 0, 8, 2)
-	var m5 = CreateMBR(5, 11, 8, 9)
-	var m6 = CreateMBR(0, 0, 2, -2)
-	var m7 = CreateMBR(-2, 1, 4, -2)
-	var m8 = CreateMBR(-1, 0, 1, -1.5)
+	var m1 = CreateMBR[float64](0., 0., 2., 2.)
+	var m2 = CreateMBR[float64](4., 5., 8., 9.)
+	var m3 = CreateMBR[float64](1.7, 1.5, 5., 9.)
+	var m4 = CreateMBR[float64](5., 0., 8., 2.)
+	var m5 = CreateMBR[float64](5., 11, 8., 9.)
+	var m6 = CreateMBR[float64](0., 0., 2., -2.)
+	var m7 = CreateMBR[float64](-2., 1., 4., -2.)
+	var m8 = CreateMBR[float64](-1., 0., 1., -1.5)
 
 	var p = []float64{1.7, 1.5, 3.4} // POINT(1.7 1.5, 3.4)
 	var p0 = []float64{1.7}          // POINT(1.7 1.5)
-	var null = CreateNullMBR()
+	var null = CreateNullMBR[float64]()
 
 	g.Describe("minimum bounding box", func() {
 		var m0123 = CreateMBR(0, 2, 1, 3)
@@ -128,9 +128,9 @@ func TestMBR(t *testing.T) {
 			g.Assert(mp12.IntersectsPoint(p3)).IsFalse()
 			g.Assert(m1.ContainsXY(1, 1)).IsTrue()
 
-			mbr11 := CreateMBR(1, 1, 1.5, 1.5)
-			mbr12 := CreateMBR(1, 1, 2, 2)
-			mbr13 := CreateMBR(1, 1, 2.000045, 2.00001)
+			mbr11 := CreateMBR(1., 1., 1.5, 1.5)
+			mbr12 := CreateMBR(1., 1., 2., 2.)
+			mbr13 := CreateMBR(1., 1., 2.000045, 2.00001)
 			mbr14 := CreateMBR(2.000045, 2.00001, 4.000045, 4.00001)
 
 			g.Assert(m1.Contains(&mbr11)).IsTrue()
@@ -152,7 +152,7 @@ func TestMBR(t *testing.T) {
 
 		g.It("translate, expand by, area", func() {
 
-			var ma = CreateMBR(0, 0, 2, 2)
+			var ma = CreateMBR(0., 0., 2., 2.)
 			var mb = CreateMBR(-1, -1, 1.5, 1.9)
 			var mc = CreateMBR(1.7, 1.5, 5, 9)
 			var md = ma.Clone()

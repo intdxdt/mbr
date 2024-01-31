@@ -5,7 +5,7 @@ import (
 )
 
 // String converts mbr to wkt string
-func (mbr *MBR) String() string {
+func (mbr *MBR[T]) String() string {
 	var lx, ly = mbr.MinX, mbr.MinY
 	var ux, uy = mbr.MaxX, mbr.MaxY
 

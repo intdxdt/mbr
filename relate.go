@@ -3,16 +3,16 @@ package mbr
 import "github.com/intdxdt/math"
 
 // Equals - checks equality of two bounding box
-func (mbr *MBR) Equals(other *MBR) bool {
-	var minEq = math.FloatEqual(mbr.MinX, other.MinX) && math.FloatEqual(mbr.MinY, other.MinY)
-	var maxEq = math.FloatEqual(mbr.MaxX, other.MaxX) && math.FloatEqual(mbr.MaxY, other.MaxY)
+func (mbr *MBR[T]) Equals(other *MBR[T]) bool {
+	var minEq = math.Equals(mbr.MinX, other.MinX) && math.Equals(mbr.MinY, other.MinY)
+	var maxEq = math.Equals(mbr.MaxX, other.MaxX) && math.Equals(mbr.MaxY, other.MaxY)
 	return minEq && maxEq
 }
 
 // Intersection  of two bounding box
-func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
-	var minx, miny = nan, nan
-	var maxx, maxy = nan, nan
+func (mbr *MBR[T]) Intersection(other *MBR[T]) (MBR[T], bool) {
+	var minx, miny = T(nan), T(nan)
+	var maxx, maxy = T(nan), T(nan)
 	var intersects = mbr.Intersects(other)
 
 	if intersects {
@@ -41,11 +41,11 @@ func (mbr *MBR) Intersection(other *MBR) (MBR, bool) {
 		}
 	}
 
-	return MBR{minx, miny, maxx, maxy}, intersects
+	return MBR[T]{minx, miny, maxx, maxy}, intersects
 }
 
-// Checks if two bounding boxes intesect
-func (mbr *MBR) Intersects(other *MBR) bool {
+// Intersects - Checks if two bounding boxes intesect
+func (mbr *MBR[T]) Intersects(other *MBR[T]) bool {
 	//not disjoint
 	return !(other.MinX > mbr.MaxX ||
 		other.MaxX < mbr.MinX ||
@@ -53,32 +53,33 @@ func (mbr *MBR) Intersects(other *MBR) bool {
 		other.MaxY < mbr.MinY)
 }
 
-// Checks if bounding box intersects point
-func (mbr *MBR) IntersectsPoint(pt []float64) bool {
+// IntersectsPoint - Checks if bounding box intersects point
+func (mbr *MBR[T]) IntersectsPoint(pt []T) bool {
 	if len(pt) < 2 {
 		return false
 	}
 	return mbr.ContainsXY(pt[0], pt[1])
 }
 
-// Intersects bounding box defined by two points a & b
-func (mbr *MBR) IntersectsBounds(ax, ay, bx, by float64) bool {
-	if mbr.MinX > maxF64(ax, bx) || mbr.MaxX < minF64(ax, bx) {
+// IntersectsBounds - Intersects bounding box defined by two points a & b
+func (mbr *MBR[T]) IntersectsBounds(ax, ay, bx, by T) bool {
+	if mbr.MinX > max(ax, bx) || mbr.MaxX < min(ax, bx) {
 		return false
 	}
 	// not disjoint
-	return !(mbr.MinY > maxF64(ay, by) || mbr.MaxY < minF64(ay, by))
+	return !(mbr.MinY > max(ay, by) || mbr.MaxY < min(ay, by))
 }
 
 // Contains other bounding box
-func (mbr *MBR) Contains(other *MBR) bool {
-	return ((other.MinX >= mbr.MinX) &&
+func (mbr *MBR[T]) Contains(other *MBR[T]) bool {
+	return (other.MinX >= mbr.MinX) &&
 		(other.MaxX <= mbr.MaxX) &&
 		(other.MinY >= mbr.MinY) &&
-		(other.MaxY <= mbr.MaxY))
+		(other.MaxY <= mbr.MaxY)
 }
 
-func (mbr *MBR) ContainsXY(x, y float64) bool {
+// ContainsXY - contains x, y
+func (mbr *MBR[T]) ContainsXY(x, y T) bool {
 	return (x >= mbr.MinX) &&
 		(x <= mbr.MaxX) &&
 		(y >= mbr.MinY) &&
@@ -86,22 +87,22 @@ func (mbr *MBR) ContainsXY(x, y float64) bool {
 }
 
 // CompletelyContainsXY is true if mbr completely contains location with {x, y}
-func (mbr *MBR) CompletelyContainsXY(x, y float64) bool {
-	return ((x > mbr.MinX) &&
+func (mbr *MBR[T]) CompletelyContainsXY(x, y T) bool {
+	return (x > mbr.MinX) &&
 		(x < mbr.MaxX) &&
 		(y > mbr.MinY) &&
-		(y < mbr.MaxY))
+		(y < mbr.MaxY)
 }
 
 // CompletelyContainsMBR is true if mbr completely contains other
-func (mbr *MBR) CompletelyContainsMBR(other *MBR) bool {
-	return ((other.MinX > mbr.MinX) &&
+func (mbr *MBR[T]) CompletelyContainsMBR(other *MBR[T]) bool {
+	return (other.MinX > mbr.MinX) &&
 		(other.MaxX < mbr.MaxX) &&
 		(other.MinY > mbr.MinY) &&
-		(other.MaxY < mbr.MaxY))
+		(other.MaxY < mbr.MaxY)
 }
 
 // Disjoint of mbr do not intersect
-func (mbr *MBR) Disjoint(m *MBR) bool {
+func (mbr *MBR[T]) Disjoint(m *MBR[T]) bool {
 	return !mbr.Intersects(m)
 }
