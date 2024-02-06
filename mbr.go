@@ -15,6 +15,30 @@ type MBR[T Num] struct {
 	MaxY T
 }
 
+// NewMBR - bounding box
+func NewMBR[T Num](minx, miny, maxx, maxy T) *MBR[T] {
+	return &MBR[T]{
+		min(minx, maxx),
+		min(miny, maxy),
+		max(minx, maxx),
+		max(miny, maxy),
+	}
+}
+
+// NewMBRFromArray - bounding box from 2D array
+func NewMBRFromArray[T Num](a [2]T, b [2]T) *MBR[T] {
+	var minx, miny = a[0], a[1]
+	var maxx, maxy = b[0], b[1]
+	return NewMBR(minx, miny, maxx, maxy)
+}
+
+// NewMBRFromSlice - bounding box from 2D array
+func NewMBRFromSlice[T Num](a []T, b []T) *MBR[T] {
+	var minx, miny = a[0], a[1]
+	var maxx, maxy = b[0], b[1]
+	return NewMBR(minx, miny, maxx, maxy)
+}
+
 // CreateMBR - bounding box
 func CreateMBR[T Num](minx, miny, maxx, maxy T) MBR[T] {
 	return MBR[T]{

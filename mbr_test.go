@@ -113,16 +113,16 @@ func TestMBR(t *testing.T) {
 
 		g.It("contains, disjoint , contains completely", func() {
 			g.Timeout(1 * time.Hour)
-			var p1 = []float64{-5.95, 9.28}
-			var p2 = []float64{-0.11, 12.56}
+			var p1 = [2]float64{-5.95, 9.28}
+			var p2 = [2]float64{-0.11, 12.56}
 			var p3 = []float64{3.58, 11.79}
 			var p4 = []float64{-1.16, 14.71}
 
-			var mp12 = CreateMBR(p1[0], p1[1], p2[0], p2[1])
-			var mp34 = CreateMBR(p3[0], p3[1], p4[0], p4[1])
+			var mp12 = NewMBRFromArray(p1, p2)
+			var mp34 = NewMBRFromSlice(p3, p4)
 
 			// intersects but segment are disjoint
-			g.Assert(mp12.Intersects(&mp34)).IsTrue()
+			g.Assert(mp12.Intersects(mp34)).IsTrue()
 			g.Assert(mp12.IntersectsBounds(p3[0], p3[1], p4[0], p4[1])).IsTrue()
 			g.Assert(mp12.IntersectsBounds(m1.MinX, m1.MinY, m1.MaxX, m1.MaxY)).IsFalse()
 			g.Assert(mp12.IntersectsPoint(p3)).IsFalse()
